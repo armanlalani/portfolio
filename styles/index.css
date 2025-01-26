@@ -1,4 +1,73 @@
-p {
-  color: aliceblue;
-  font-size: 30px;
+@import "reset.css";
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  body {
+    width: 936px;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    width: 1152px;
+  }
+}
+
+body {
+  background: #08233b;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #e5e7eb6f;
+  backdrop-filter: blur(12px);
+  min-height: 64px;
+  align-items: center;
+  padding: 0px 20px;
+  border-radius: 16px;
+  color: white;
+  margin-top: 32px;
+  position: sticky;
+  top: 32px;
+
+  nav {
+    display: flex;
+    min-width: 480px;
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: space-evenly;
+      flex-grow: 1;
+      gap: 20px;
+    }
+  }
+
+  .socials {
+    min-width: 200px;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+
+    .socials--logo {
+      height: 24px;
+      width: 24px;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+section.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .profile-pic {
+    border-radius: 50%;
+    overflow: hidden;
+  }
 }
