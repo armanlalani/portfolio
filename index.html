@@ -4,61 +4,307 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
     <title>Arman Lalani</title>
   </head>
-  <body>
+  <body id="body">
     <header>
-      <p class="initials">Arman Lalani</p>
-      <nav>
-        <ul>
-          <li>Home</li>
-          <li>Projects</li>
-          <li>Experience</li>
-          <li>Skills</li>
-          <li>Education</li>
-          <li>Blog</li>
-          <li>Contact</li>
+      <section class="main-header header-prop">
+        <p class="initials">Arman Lalani</p>
+
+        <nav class="desktop">
+          <ul>
+            <li class="menu-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="menu-item">
+              <a href="#experience">Work</a>
+            </li>
+            <li class="menu-item">
+              <a href="#about">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <ul class="desktop socials">
+          <li>
+            <a href="https://www.linkedin.com/in/armanlalani/" target="_blank">
+              <img
+                class="socials--logo"
+                alt="LinkedIn logo"
+                src="./assets/linkedIn.png"
+            /></a>
+          </li>
+          <li>
+            <a href="https://github.com/armanlalani" target="_blank">
+              <img
+                class="socials--logo"
+                alt="GitHub logo"
+                src="./assets/github.svg"
+            /></a>
+          </li>
+          <li>
+            <a href="https://x.com/lalaniarman5" target="_blank">
+              <img class="socials--logo" alt="X logo" src="./assets/X.svg"
+            /></a>
+          </li>
+          <li>
+            <a href="https://medium.com/@armanlalani5" target="_blank">
+              <img
+                class="socials--logo"
+                alt="Medium logo"
+                src="./assets/medium.svg"
+            /></a>
+          </li>
         </ul>
-      </nav>
-      <ul class="socials">
-        <li>
-          <a href="https://www.linkedin.com/in/armanlalani/" target="_blank">
-            <img
-              class="socials--logo"
-              alt="LinkedIn logo"
-              src="./assets/linkedIn.png"
-          /></a>
-        </li>
-        <li>
-          <a href="https://github.com/armanlalani" target="_blank">
-            <img
-              class="socials--logo"
-              alt="GitHub logo"
-              src="./assets/github.svg"
-          /></a>
-        </li>
-        <li>
-          <a href="https://x.com/lalaniarman5" target="_blank">
-            <img class="socials--logo" alt="X logo" src="./assets/X.svg"
-          /></a>
-        </li>
-        <li>
-          <a href="https://medium.com/@armanlalani5" target="_blank">
-            <img
-              class="socials--logo"
-              alt="Medium logo"
-              src="./assets/medium.svg"
-          /></a>
-        </li>
-      </ul>
+
+        <button class="menu-button mobile" type="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true"
+            role="img"
+            class="menu-icon open-icon mobile"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 12h16M4 6h16M4 18h16"
+            ></path>
+          </svg>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true"
+            role="img"
+            class="menu-icon close-icon mobile"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586z"
+            ></path>
+          </svg>
+        </button>
+      </section>
+      <section class="extended-header header-prop mobile">
+        <nav>
+          <ul>
+            <li class="menu-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="menu-item">
+              <a href="#experience">Work</a>
+            </li>
+            <li class="menu-item">
+              <a href="#about">About</a>
+            </li>
+            <li class="menu-item">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <ul class="socials">
+          <li>
+            <a href="https://www.linkedin.com/in/armanlalani/" target="_blank">
+              <img
+                class="socials--logo"
+                alt="LinkedIn logo"
+                src="./assets/linkedIn.png"
+            /></a>
+          </li>
+          <li>
+            <a href="https://github.com/armanlalani" target="_blank">
+              <img
+                class="socials--logo"
+                alt="GitHub logo"
+                src="./assets/github.svg"
+            /></a>
+          </li>
+          <li>
+            <a href="https://x.com/lalaniarman5" target="_blank">
+              <img class="socials--logo" alt="X logo" src="./assets/X.svg"
+            /></a>
+          </li>
+          <li>
+            <a href="https://medium.com/@armanlalani5" target="_blank">
+              <img
+                class="socials--logo"
+                alt="Medium logo"
+                src="./assets/medium.svg"
+            /></a>
+          </li>
+        </ul>
+      </section>
     </header>
+
     <main>
-      <section class="home">
-        <div>Hey, there 👋 I'm Arman Lalani a Frontend Developer</div>
-        <div class="profile-pic">
-          <img src="./assets/profile.jpeg" alt="profile picture" />
+      <section class="home" id="body">
+        <div class="home__container">
+          <div class="intro">
+            <p class="intro__greeting">Hey, there 👋</p>
+            <p class="intro__about-header">
+              <span class="about-header-iam">I'm</span>
+              <span class="about-header-name">Arman Lalani</span>
+              <br />
+              <span class="intro__work-title">a Software Developer</span>
+            </p>
+
+            <p class="intro__about-main">
+              with 4 years of experience specializing in React, JavaScript, and
+              building scalable, user-friendly web applications.
+            </p>
+          </div>
+
+          <img
+            class="profile-pic"
+            src="./assets/profile.jpeg"
+            alt="profile picture"
+          />
         </div>
       </section>
+
+      <section class="experience" id="experience">
+        <h3 class="section-title heading-3">EXPERIENCE</h3>
+        <div class="work-exp-card">
+          <div class="work-exp--timeline">
+            <div class="timeline--dot"></div>
+            <div class="timeline--stroke"></div>
+          </div>
+          <div class="work-exp--logo">
+            <img src="./assets/tcs-sq-white-bkg.png" />
+          </div>
+          <div class="work-exp__details">
+            <h5 class="work-exp__title heading-5">Frontend Developer</h5>
+            <h6 class="work-exp__company heading-6">
+              Tata Consultancy Services Ltd.
+            </h6>
+            <p class="work-exp__duration">June 2021 - Present</p>
+            <ul class="work_exp__description">
+              <li>
+                Collaborated with over 3 clients to gather requirements, design
+                prototypes, and implement final solutions in React based on
+                feedback.
+              </li>
+
+              <li>
+                Designed and implemented a scheduling feature that improved
+                operational efficiency by 30% for upcoming activities over the
+                next 7 days.
+              </li>
+
+              <li>
+                Created dynamic charts and graphs to visualize critical machine
+                parameters, ensuring real-time data visibility and improving
+                response times by 25%.
+              </li>
+
+              <li>
+                Authored comprehensive React unit test cases to maintain 95%+
+                test coverage, maintaining reliability and performance.
+              </li>
+
+              <li>
+                Provided ongoing support for the application, troubleshooting
+                issues and ensuring system stability for over 500 end users.
+              </li>
+
+              <li>
+                Resolved 10+ cloud vulnerabilities in AWS Lambdas by using AWS
+                Secrets, enhancing data security and compliance.
+              </li>
+
+              <li>
+                Played a key role in replicating and verifying 20+ APIs during
+                database migration, ensuring data consistency through Postman
+                test cases.
+              </li>
+
+              <li>
+                Built an export functionality that allowed users to download
+                actionable insights in Excel format, increasing report
+                accessibility by 40%.
+              </li>
+
+              <li>
+                Delivered monthly presentations to stakeholders on project
+                updates and technical progress.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills" id="about">
+        <h3 class="section-title heading-3">SKILLS</h3>
+
+        <ul class="">
+          <li class="skills__category">
+            <h5 class="heading-5 category__name">Programming Languages</h5>
+            <ul class="category__items">
+              <li>Javascript</li>
+              <li>Typescript</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>SQL</li>
+              <li>Java</li>
+              <li>Python</li>
+            </ul>
+          </li>
+
+          <li class="skills__category">
+            <h5 class="heading-5 category__name">Libraries and Frameworks</h5>
+            <ul class="category__items">
+              <li>React JS</li>
+              <li>Node.js</li>
+              <li>Redux</li>
+              <li>React Router</li>
+              <li>Jest</li>
+              <li>Enzyme</li>
+              <li>Material UI</li>
+              <li>Tailwind</li>
+              <li>Git</li>
+              <li>RESTful APIs</li>
+              <li>Webpack</li>
+              <li>NPM</li>
+              <li>Babel</li>
+              <li>JSON</li>
+            </ul>
+          </li>
+
+          <li class="skills__category">
+            <h5 class="heading-5 category__name">Other Skills</h5>
+            <ul class="category__items">
+              <li>Responsive Web Design</li>
+              <li>Data Structures and Algorithms</li>
+              <li>Web Performance Optimization</li>
+              <li>Frontend Development</li>
+              <li>SonarQube</li>
+              <li>Technical Writing</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
     </main>
+
+    <script src="./index.mjs"></script>
   </body>
 </html>
