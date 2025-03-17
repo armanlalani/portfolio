@@ -192,7 +192,7 @@ section.experience {
 
     ul {
       color: white;
-      list-style-type: "\1F7C4"; /* symbl.cc/en/1F7C4/ */
+      list-style-type: "\2726"; /* symbl.cc/en/2726/ */
       padding-left: 16px;
 
       li {
@@ -260,6 +260,10 @@ section.skills {
   body,
   header {
     width: 85vw;
+  }
+
+  section.home {
+    min-height: 800px;
   }
 
   .home__container {
@@ -363,7 +367,7 @@ section.skills {
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1279px) {
   body,
   header {
     width: 1152px;
