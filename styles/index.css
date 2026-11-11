@@ -18,7 +18,6 @@ body {
   font-family: "Open Sans", sans-serif;
   line-height: normal;
   color: var(--white);
-  scroll-margin-top: 96px;
 }
 
 header {
@@ -88,6 +87,15 @@ header {
 
 main {
   margin-top: 96px;
+
+  /* Keep section titles clear of the fixed header after a nav jump */
+  > section {
+    scroll-margin-top: 112px;
+  }
+
+  > section + section {
+    margin-top: 72px;
+  }
 }
 
 section.home {
@@ -105,7 +113,8 @@ section.home {
       color: rgb(206, 196, 196);
       font-size: 1.5rem;
 
-      p {
+      p,
+      h1 {
         margin: 20px 0px;
       }
 
@@ -151,6 +160,12 @@ section.experience {
     gap: 10px;
     overflow: clip;
 
+    /* Space between jobs. Padding inside the card (not a margin between
+       cards) so the timeline line keeps running into the next job. */
+    &:not(:last-child) .work-exp__details {
+      padding-bottom: 48px;
+    }
+
     .work-exp--timeline {
       .timeline--dot {
         height: 24px;
@@ -194,6 +209,7 @@ section.experience {
       color: white;
       list-style-type: "\2726"; /* symbl.cc/en/2726/ */
       padding-left: 16px;
+      max-width: 80ch; /* readable line length on wide screens */
 
       li {
         padding-left: 10px;
@@ -204,9 +220,11 @@ section.experience {
 }
 
 .heading-3 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: #ded7d7;
   font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
 }
 
 .heading-4 {
@@ -229,18 +247,101 @@ section.experience {
 
 section.skills {
   .skills__category {
-    margin: 10px;
+    margin: 0 0 24px;
+  }
+
+  .category__name {
+    margin-bottom: 10px;
   }
 
   .category__items {
     display: flex;
     flex-wrap: wrap;
-    gap: 3px;
+    gap: 8px;
+  }
+}
 
-    li::after {
-      content: " | ";
+/* Pill used by Skills and Contact */
+.chip {
+  padding: 6px 14px;
+  border: 1px solid var(--gray-transparent);
+  border-radius: 999px; /* fully rounded ends */
+  background-color: #03527d61;
+  color: var(--white);
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+section.contact {
+  .contact__intro {
+    max-width: 60ch;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .contact__email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact__email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    &:hover {
+      border-color: var(--white);
     }
   }
+
+  .contact__copy {
+    padding: 10px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--white);
+    }
+  }
+}
+
+.site-footer {
+  margin-top: 96px;
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--gray-transparent);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--gray);
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
+}
+
+/* Read by screen readers, not shown on screen */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .socials--logo {
@@ -269,6 +370,35 @@ section.skills {
   .home__container {
     flex-direction: column;
     /* margin-top: 100px; */
+  }
+
+  /* Job cards: smaller logo stacked above the title, so the text gets the
+     full width next to the timeline instead of a narrow column. */
+  section.experience .work-exp-card:has(.work-exp--timeline) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 12px;
+
+    .work-exp--timeline {
+      grid-row: 1 / span 2;
+    }
+
+    .work-exp--logo {
+      margin-bottom: 10px;
+
+      img {
+        display: block; /* no extra space under the image */
+        height: 56px;
+        width: 56px;
+        border-width: 2px;
+        border-radius: 12px;
+      }
+    }
+  }
+
+  section.experience .work-exp__details {
+    min-width: 0;
+    overflow-wrap: break-word; /* long tokens like ONLY_FULL_GROUP_BY */
   }
 
   .desktop {

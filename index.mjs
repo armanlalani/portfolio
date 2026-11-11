@@ -1,77 +1,58 @@
-// Add an event listener on resize event
-// add a throttled callback to this resize event
-// On <767px, add an event listener on extended header
-// Remove it when >767px
-// maintain a state to know whether event is attached or not
+// Mobile menu: the button toggles the extended header; tapping a link closes it.
 
-// function throttle(fn, delay = 100) {
-//   let isSleeping = false;
-//   let stash = null;
-
-//   function wakeUp() {
-//     setTimeout(() => {
-//       isSleeping = false;
-//       if (stash) {
-//         fn.call(stash[0], stash[1]);
-//         stash = null;
-//         isSleeping = true;
-//         wakeUp();
-//       }
-//     }, delay);
-//   }
-
-//   return function (...params) {
-//     if (isSleeping) {
-//       stash = [this, params];
-//     } else {
-//       fn.call(this, ...params);
-//       isSleeping = true;
-//       wakeUp();
-//     }
-//   };
-// }
-
-// const handleResize = (e) => {
-//   console.log(e.target.innerWidth);
-//   let currWidth = e.target.innerWidth;
-//   if (currWidth < 767) {
-//     // Add an event listener to menu button
-//   }
-// };
-
-// window.addEventListener("resize", throttle(handleResize, 300));
-
-const MENU_BUTTON_CLASS = ".menu-button";
-const MENU_OPEN_ICON_CLASS = ".open-icon";
-const MENU_CLOSE_ICON_CLASS = ".close-icon";
-const EXTENDED_HEADER_CLASS = ".extended-header";
-
-const menu = document.querySelector(MENU_BUTTON_CLASS);
-const menuCloseIcon = menu.querySelector(MENU_CLOSE_ICON_CLASS);
-const menuOpenIcon = menu.querySelector(MENU_OPEN_ICON_CLASS);
-const extendedHeader = document.querySelector(EXTENDED_HEADER_CLASS);
-
-document.querySelectorAll;
+const menuButton = document.querySelector(".menu-button");
+const openIcon = menuButton.querySelector(".open-icon");
+const closeIcon = menuButton.querySelector(".close-icon");
+const extendedHeader = document.querySelector(".extended-header");
 
 let menuOpen = false;
 
-menuCloseIcon.style.display = "none";
-extendedHeader.classList.add("hidden-flex");
+function setMenuOpen(open) {
+  menuOpen = open;
+  openIcon.style.display = open ? "none" : "block";
+  closeIcon.style.display = open ? "block" : "none";
+  extendedHeader.classList.toggle("hidden-flex", !open);
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
 
-menu.addEventListener("click", () => {
-  console.log("click");
-  if (menuOpen) {
-    // To close the menu
-    menuCloseIcon.style.display = "none";
-    menuOpenIcon.style.display = "block";
-    // extendedHeader.classList.toggle("visible-flex");
-    extendedHeader.classList.toggle("hidden-flex");
-  } else {
-    menuCloseIcon.style.display = "block";
-    menuOpenIcon.style.display = "none";
-    // extendedHeader.classList.toggle("visible-flex");
-    extendedHeader.classList.toggle("hidden-flex");
-  }
+setMenuOpen(false);
 
-  menuOpen = !menuOpen;
+menuButton.addEventListener("click", () => setMenuOpen(!menuOpen));
+
+extendedHeader.addEventListener("click", (event) => {
+  if (event.target.closest("a")) setMenuOpen(false);
 });
+
+// Footer: keep the copyright year current. The year written in the HTML is
+// only a fallback for when JavaScript doesn't run.
+
+const footerYear = document.querySelector(".footer__year");
+if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+// Contact: "Copy" button for the email address.
+// The button stays hidden unless the browser can copy (needs HTTPS or localhost).
+
+const copyButton = document.querySelector(".contact__copy");
+const copyStatus = copyButton?.parentElement.querySelector("[aria-live]");
+
+if (copyButton && navigator.clipboard) {
+  copyButton.hidden = false;
+  let resetTimer;
+
+  copyButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(copyButton.dataset.copy);
+      copyButton.textContent = "Copied ✓";
+      copyStatus.textContent = "Email address copied";
+    } catch {
+      copyButton.textContent = "Couldn't copy";
+      copyStatus.textContent = "";
+    }
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => {
+      copyButton.textContent = "Copy";
+      copyStatus.textContent = "";
+    }, 2000);
+  });
+}
