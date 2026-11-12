@@ -6,15 +6,26 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import site from "../data/site.js";
 
+// Optional link-preview overrides (post pages pass their cover image):
+//   ogType "article", ogImage { src, width, height, alt, type }
 const {
   title,
   description = site.description,
   ogTitle = title,
   ogDescription = description,
+  ogType = "website",
+  ogImage: ogImageProp,
 } = Astro.props;
 
 const pageUrl = new URL(Astro.url.pathname, site.url).href;
-const ogImage = new URL(site.ogImage, site.url).href;
+const ogImageInfo = ogImageProp ?? {
+  src: site.ogImage,
+  width: 1200,
+  height: 630,
+  alt: site.ogImageAlt,
+  type: "image/png",
+};
+const ogImage = new URL(ogImageInfo.src, site.url).href;
 ---
 
 <!doctype html>
@@ -28,23 +39,23 @@ const ogImage = new URL(site.ogImage, site.url).href;
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 
     <!-- Link previews (LinkedIn, X, WhatsApp, Slack, iMessage) -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={site.ogImageAlt} />
+    <meta property="og:image:type" content={ogImageInfo.type} />
+    <meta property="og:image:width" content={String(ogImageInfo.width)} />
+    <meta property="og:image:height" content={String(ogImageInfo.height)} />
+    <meta property="og:image:alt" content={ogImageInfo.alt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content={site.twitter} />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={site.ogImageAlt} />
+    <meta name="twitter:image:alt" content={ogImageInfo.alt} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,6 +63,7 @@ const ogImage = new URL(site.ogImage, site.url).href;
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
     />
+    <slot name="head" />
   </head>
   <body>
     <Header />

@@ -1,0 +1,77 @@
+---
+// Slide-deck viewer: one slide per view, swipe on touch, arrow keys,
+// "5 / 14" counter, progress bar, full screen, and #7-style deep links.
+//
+// Works without JavaScript too: the slides are a horizontal scroll-snap
+// strip. src/scripts/deck.js adds the buttons, counter, keys and URL hash.
+//
+// Props:
+//   title   deck title (used in the region's label)
+//   slides  [{ image: ImageMetadata, alt: string }] in order
+//   pdf     optional URL of a PDF version
+import { Image } from "astro:assets";
+
+const { title, slides, pdf } = Astro.props;
+const total = slides.length;
+---
+
+<section
+  class="deck"
+  aria-roledescription="carousel"
+  aria-label={`${title}: ${total} slides`}
+  data-deck
+>
+  <div class="deck__track" data-deck-track>
+    {
+      slides.map((slide, i) => (
+        <div
+          class="deck__slide"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${i + 1} of ${total}`}
+        >
+          <Image
+            src={slide.image}
+            alt={slide.alt}
+            format="webp"
+            widths={[540, 1080]}
+            sizes="(min-width: 768px) 560px, 100vw"
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchpriority={i === 0 ? "high" : undefined}
+            decoding="async"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="deck__progress" aria-hidden="true">
+    <span data-deck-progress style={`--progress: ${1 / total}`}></span>
+  </div>
+
+  <div class="deck__controls" data-deck-controls hidden>
+    <button class="chip carousel__button" type="button" data-deck-prev aria-label="Previous slide">←</button>
+    <p class="deck__counter" aria-live="polite">
+      <span class="visually-hidden">Slide </span><span data-deck-current>1</span> / {total}
+    </p>
+    <button class="chip carousel__button" type="button" data-deck-next aria-label="Next slide">→</button>
+    <button class="chip carousel__button deck__fullscreen" type="button" data-deck-fullscreen aria-label="View full screen" hidden>
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+      </svg>
+    </button>
+  </div>
+
+  {
+    pdf && (
+      <p class="deck__download">
+        <a class="chip" href={pdf} download>Download PDF</a>
+      </p>
+    )
+  }
+</section>
+
+<script>
+  import { initDeck } from "../scripts/deck.js";
+  document.querySelectorAll("[data-deck]").forEach(initDeck);
+</script>

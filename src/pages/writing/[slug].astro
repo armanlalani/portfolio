@@ -1,0 +1,115 @@
+---
+// /writing/<slug>/ for every "deck" post in src/data/posts.json:
+// the slide viewer, the full text of the slides (real HTML, readable by
+// search engines and screen readers), and the sources.
+import { getImage } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import DeckViewer from "../../components/DeckViewer.astro";
+import { getPosts, readableDate } from "../../lib/writing.js";
+import { getDeck } from "../../lib/decks.js";
+import site from "../../data/site.js";
+
+export function getStaticPaths() {
+  return getPosts()
+    .filter((post) => post.type === "deck")
+    .map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const deck = getDeck(post.slug);
+
+// Link-preview image: the cover slide as a JPEG (widest support in chat apps)
+const preview = await getImage({ src: deck.cover, format: "jpeg", width: 1080, quality: 85 });
+
+const pageUrl = new URL(Astro.url.pathname, site.url).href;
+const articleData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.title,
+  description: post.summary,
+  datePublished: post.date,
+  image: new URL(preview.src, site.url).href,
+  url: pageUrl,
+  author: { "@type": "Person", name: site.name, url: site.url },
+};
+---
+
+<Base
+  title={`${post.title} — ${site.name}`}
+  description={post.summary}
+  ogType="article"
+  ogImage={{
+    src: preview.src,
+    width: preview.attributes.width,
+    height: preview.attributes.height,
+    alt: deck.slides[0].alt,
+    type: "image/jpeg",
+  }}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleData)} />
+
+  <article class="post">
+    <p class="post__meta">
+      <a class="post__back" href="/writing/">← All writing</a>
+      <time datetime={post.date}>{readableDate(post.date)}</time>
+      <span>{deck.slides.length} slides</span>
+    </p>
+    <h1 class="post__title section-title heading-3">{post.title}</h1>
+    {post.summary && <p class="post__summary">{post.summary}</p>}
+
+    <DeckViewer title={post.title} slides={deck.slides} pdf={post.pdf} />
+
+    <p class="post__note">
+      Swipe, use the ← → keys, or <a href="#text-version">read the text version</a>.
+      For education only, not investment advice. This is a personal view.
+    </p>
+
+    <section class="post__section" id="text-version" aria-labelledby="text-version-title">
+      <h2 class="post__section-title" id="text-version-title">Text version of the slides</h2>
+      <ol class="deck-text">
+        {
+          deck.slides.map((slide, i) => (
+            <li id={`slide-text-${i + 1}`}>
+              <h3>
+                <span class="deck-text__number">SLIDE {i + 1}</span>
+                {slide.heading}
+              </h3>
+              {slide.intro?.map((text) => <p>{text}</p>)}
+              {slide.items && (
+                <ul>
+                  {slide.items.map((item) => (
+                    <li>
+                      <strong>{item.title}</strong> {item.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {slide.outro?.map((text) => <p>{text}</p>)}
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    {
+      deck.sources?.length > 0 && (
+        <section class="post__section" aria-labelledby="sources-title">
+          <h2 class="post__section-title" id="sources-title">Sources</h2>
+          <ul class="sources-list">
+            {deck.sources.map((source) => (
+              <li>
+                {source.url ? (
+                  <a href={source.url} target="_blank" rel="noopener">
+                    {source.label}
+                  </a>
+                ) : (
+                  source.label
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</Base>

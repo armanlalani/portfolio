@@ -14,13 +14,16 @@ export default defineConfig({
   build: {
     format: "directory", // /writing/ -> dist/writing/index.html
   },
+  // Keep HTML whitespace as written. Compression drops a space that is only a
+  // line break between a tag and text ("I'm Arman" became "I'mArman"), and
+  // saves almost nothing once the server gzips the page.
+  compressHTML: false,
   devToolbar: {
     enabled: false,
   },
 
   ...(readable && {
     outDir: "dist-readable",
-    compressHTML: false, // keep the HTML's line breaks and indentation
     vite: {
       build: {
         minify: false, // keep variable names and formatting in JS and CSS

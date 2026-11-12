@@ -1,6 +1,7 @@
 ---
 // One post card. `post` comes from getPosts()/getLatest() in src/lib/writing.js.
 // headingLevel: 3 under a section's <h2> (home page), 2 right under the page <h1>.
+import { Image } from "astro:assets";
 import { readableDate } from "../lib/writing.js";
 
 const { post, headingLevel = 3 } = Astro.props;
@@ -14,7 +15,22 @@ const tags = (post.tags ?? []).slice(0, 3);
   target={post.external ? "_blank" : undefined}
   rel={post.external ? "noopener" : undefined}
 >
-  {post.cover && <img class="post-card__cover" src={post.cover} alt="" loading="lazy" />}
+  {
+    post.coverImage ? (
+      <Image
+        class="post-card__cover"
+        src={post.coverImage}
+        alt=""
+        format="webp"
+        widths={[320, 640]}
+        sizes="320px"
+        loading="lazy"
+        style={post.coverPosition ? `object-position: ${post.coverPosition}` : undefined}
+      />
+    ) : (
+      post.cover && <img class="post-card__cover" src={post.cover} alt="" loading="lazy" />
+    )
+  }
   <div class="post-card__body">
     <span class="chip post-card__label">{post.label}</span>
     <Title class="post-card__title">

@@ -1,5 +1,19 @@
 [
   {
+    "slug": "ai-bubble-explained",
+    "type": "deck",
+    "title": "The AI Bubble, Explained Simply",
+    "summary": "Who borrows, who lends, and who carries the risk if AI takes longer to pay off. 14 slides in plain language, no finance degree needed.",
+    "date": "2026-11-13",
+    "tags": [
+      "ai",
+      "finance",
+      "explainer"
+    ],
+    "slideCount": 14,
+    "coverPosition": "center 78%"
+  },
+  {
     "slug": "building-a-barebones-http-server-in-node-js-a-first-principles-walkthrough",
     "type": "external",
     "title": "Building a Barebones HTTP Server in Node.js: A First Principles Walkthrough",

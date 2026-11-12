@@ -7,6 +7,7 @@
 // `npm run build` with a clear message instead of publishing a broken card.
 
 import rawPosts from "../data/posts.json";
+import { getDeckCover } from "./decks.js";
 
 const LATEST_COUNT = 10;
 
@@ -29,7 +30,12 @@ function validate(post, i) {
 function cardInfo(post) {
   switch (post.type) {
     case "deck":
-      return { href: `/writing/${post.slug}/`, label: `${post.slideCount} slides`, external: false };
+      return {
+        href: `/writing/${post.slug}/`,
+        label: `${post.slideCount} slides`,
+        external: false,
+        coverImage: getDeckCover(post.slug), // slide 1, made into WebP by Astro
+      };
     case "article":
       return { href: `/writing/${post.slug}/`, label: `${post.readingMinutes} min read`, external: false };
     case "external":

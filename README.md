@@ -39,6 +39,10 @@ read the same file. Astro needs at least Node 22.23.4.
 | `src/data/site.js` | Site name, URLs, menu items, social links |
 | `src/data/posts.json` | Every post (source of truth) |
 | `src/lib/writing.js` | Checks `posts.json` and prepares it for the pages |
+| `src/pages/writing/[slug].astro` | One page per slide deck: viewer, text version, sources |
+| `src/components/DeckViewer.astro`, `src/scripts/deck.js` | The slide viewer |
+| `src/data/decks/` | Each deck's slide text (alt text + text version) and sources |
+| `src/assets/decks/<slug>/` | Each deck's slides as PNG (Astro makes the WebP versions) |
 | `public/assets/` | Images and icons, copied to the site as-is |
 
 ### How an `.astro` file works
@@ -72,6 +76,18 @@ All posts live in [`src/data/posts.json`](src/data/posts.json). The home page sh
 
 Optional for all: `summary`, `tags`, `cover`, `hidden`. Dates are `YYYY-MM-DD`.
 A typo (unknown type, missing field, bad date) stops the build with a message saying which post.
+
+### Adding a slide deck
+
+1. Export the slides as PNG, 1080×1350, named `01.png`, `02.png`, … and put them in
+   `src/assets/decks/<slug>/`. Astro converts them to WebP (540px and 1080px wide) when it builds.
+2. Write the text of every slide in `src/data/decks/<slug>.js` (copy
+   `ai-bubble-explained.js`): a heading per slide, the text, a short `alt`, and the sources.
+3. Add the post to `src/data/posts.json` with `"type": "deck"`, the same `slug`, and `slideCount`.
+   Optional: `"pdf"` (a download link) and `"coverPosition"` (which part of slide 1 the card shows).
+
+The page appears at `/writing/<slug>/`. The build stops with a message if the number of
+images and slides don't match. `/writing/<slug>/#7` opens slide 7.
 
 ### Medium posts are added automatically
 
