@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "description": "My portfolio website: plain HTML, CSS and JavaScript. No framework is sent to readers.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "build:readable": "READABLE=1 astro build",
+    "preview": "astro preview",
+    "sync:medium": "node scripts/sync-medium.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armanlalani/portfolio.git"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "devDependencies": {
+    "astro": "7.4.4"
+  },
+  "packageManager": "yarn@4.18.1+sha512.b2e1e7524f654f2749d32b4ebcb4622473cb5bcbc485df2007e12a154e50162a4d795526768bc5f5b8f81717bfd79deb2472813d86fb5ae2eb551fa9c872b08f"
+}

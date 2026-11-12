@@ -1,0 +1,135 @@
+[
+  {
+    "slug": "building-a-barebones-http-server-in-node-js-a-first-principles-walkthrough",
+    "type": "external",
+    "title": "Building a Barebones HTTP Server in Node.js: A First Principles Walkthrough",
+    "summary": "When learning backend development, it’s tempting to jump straight into frameworks like Express. But to truly master backend engineering — and to be interview-ready — you need to understand how things…",
+    "date": "2025-08-23",
+    "tags": [
+      "rest-api",
+      "https",
+      "nodejs",
+      "backend-development"
+    ],
+    "url": "https://armanlalani5.medium.com/building-a-barebones-http-server-in-node-js-a-first-principles-walkthrough-e64673ad5a3d",
+    "platform": "Medium"
+  },
+  {
+    "slug": "mastering-typescript-basics-a-developer-s-quick-guide",
+    "type": "external",
+    "title": "Mastering TypeScript Basics: A Developer’s Quick Guide",
+    "summary": "This post is not a rehash of the documentation — it’s a practical, concise reference covering the basics, enriched with deeper insights where they matter.",
+    "date": "2025-05-01",
+    "tags": [
+      "typescript",
+      "typescript-tutorial",
+      "typescript-tips"
+    ],
+    "url": "https://armanlalani5.medium.com/mastering-typescript-basics-a-developers-quick-guide-0443b4a365a0",
+    "platform": "Medium"
+  },
+  {
+    "slug": "tailwind-css-important-concepts-and-interview-questions",
+    "type": "external",
+    "title": "Tailwind CSS | Important Concepts and Interview Questions",
+    "summary": "Formally speaking, it is a utility-first CSS framework.",
+    "date": "2025-03-15",
+    "tags": [
+      "tailwind-css",
+      "frontend-interviews"
+    ],
+    "url": "https://armanlalani5.medium.com/tailwind-css-important-concepts-and-interview-questions-428409c5004f",
+    "platform": "Medium"
+  },
+  {
+    "slug": "debounce-and-throttle",
+    "type": "external",
+    "title": "Debounce and Throttle",
+    "summary": "",
+    "date": "2025-01-26",
+    "tags": [
+      "debounce",
+      "web-performance",
+      "javascript",
+      "throttle"
+    ],
+    "url": "https://armanlalani5.medium.com/debounce-and-throttle-17fdb95ee194",
+    "platform": "Medium"
+  },
+  {
+    "slug": "infix-and-postfix-expressions-and-conversion-using-stacks",
+    "type": "external",
+    "title": "Infix and Postfix Expressions and Conversion using Stacks",
+    "summary": "The operator are written in between the operands. Example 1: 5 + 2 = 7 Here the operator + is between the the operands 5 and 2",
+    "date": "2025-01-21",
+    "tags": [
+      "stack-data-structure",
+      "data-structure-algorithm",
+      "interview-questions",
+      "infix-to-postfix"
+    ],
+    "url": "https://armanlalani5.medium.com/infix-and-postfix-expressions-and-conversion-using-stacks-787491ad0110",
+    "platform": "Medium"
+  },
+  {
+    "slug": "image-optimization",
+    "type": "external",
+    "title": "Image Optimization",
+    "summary": "The idea is to provide a higher-resolution image for -",
+    "date": "2024-12-30",
+    "tags": [],
+    "url": "https://armanlalani5.medium.com/image-optimization-688fd9fb504d",
+    "platform": "Medium"
+  },
+  {
+    "slug": "abort-controller-javascript-interview-question",
+    "type": "external",
+    "title": "Abort Controller | Javascript Interview Question",
+    "summary": "When working with JavaScript and React, managing API calls effectively is crucial, especially when your components unmount before the API response is received. This can lead to memory leaks and…",
+    "date": "2024-12-22",
+    "tags": [
+      "useeffect",
+      "fetch-api",
+      "react",
+      "javascript"
+    ],
+    "url": "https://armanlalani5.medium.com/abort-controller-javascript-interview-question-ef393e386cd0",
+    "platform": "Medium"
+  },
+  {
+    "slug": "problems-on-prime-numbers",
+    "type": "external",
+    "title": "Problems on Prime Numbers",
+    "summary": "Reference - All about Primes | Competitive Programming | Raj (Striver) | CodeBeyond Channel",
+    "date": "2024-12-22",
+    "tags": [],
+    "url": "https://armanlalani5.medium.com/problems-on-prime-numbers-0d77d9ce2a6b",
+    "platform": "Medium"
+  },
+  {
+    "slug": "javascript-interview-implement-pub-sub",
+    "type": "external",
+    "title": "Javascript Interview: Implement Pub-Sub",
+    "summary": "Question: Implement aPub-Sub as a class with subscribe, publish, unsubscribe methods. They will communicate through an eventName channel which is just a string. It should be built so that many…",
+    "date": "2024-12-10",
+    "tags": [],
+    "url": "https://armanlalani5.medium.com/javascript-interview-implement-pub-sub-bcbbe21c1186",
+    "platform": "Medium"
+  },
+  {
+    "slug": "demystifying-node-modules",
+    "type": "external",
+    "title": "Demystifying node modules",
+    "summary": "It’s true that while your package.json only lists a few dependencies (react, react-dom), running yarn install downloads a significant number of additional packages. These packages are all part of the…",
+    "date": "2024-10-26",
+    "tags": [
+      "yarn",
+      "vitejs",
+      "node-modules",
+      "npm",
+      "javascript"
+    ],
+    "url": "https://armanlalani5.medium.com/demystifying-node-modules-22039219e863",
+    "platform": "Medium"
+  }
+]

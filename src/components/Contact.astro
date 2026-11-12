@@ -1,0 +1,48 @@
+---
+// Contact section: email in a pill, plus a Copy button (shown only when the
+// browser can copy).
+---
+
+<section class="contact" id="contact">
+  <h2 class="section-title heading-3">CONTACT</h2>
+  <p class="contact__intro">
+    I'm open to frontend roles, and always happy to talk about React,
+    performance or the web platform.
+  </p>
+  <div class="contact__email">
+    <a class="chip contact__email-link" href="mailto:armanlalani5@gmail.com">
+      <svg
+        class="contact__icon"
+        aria-hidden="true"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+        <path d="m3 7 9 6 9-6"></path>
+      </svg>
+      armanlalani5@gmail.com
+    </a>
+    <!-- Shown by src/scripts/copy-email.js only when copying is supported -->
+    <button
+      class="chip contact__copy"
+      type="button"
+      data-copy="armanlalani5@gmail.com"
+      aria-label="Copy email address"
+      hidden
+    >
+      Copy
+    </button>
+    <span class="visually-hidden" aria-live="polite"></span>
+  </div>
+</section>
+
+<script>
+  import { initCopyEmail } from "../scripts/copy-email.js";
+  initCopyEmail();
+</script>

@@ -1,0 +1,8 @@
+# Netlify installs packages with Yarn (it sees yarn.lock and the "packageManager"
+# field in package.json), runs Astro, and publishes dist/.
+
+[build]
+  command = "yarn build"
+  publish = "dist"
+
+# Node version comes from .nvmrc

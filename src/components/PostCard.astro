@@ -1,0 +1,30 @@
+---
+// One post card. `post` comes from getPosts()/getLatest() in src/lib/writing.js.
+// headingLevel: 3 under a section's <h2> (home page), 2 right under the page <h1>.
+import { readableDate } from "../lib/writing.js";
+
+const { post, headingLevel = 3 } = Astro.props;
+const Title = `h${headingLevel}`;
+const tags = (post.tags ?? []).slice(0, 3);
+---
+
+<a
+  class="post-card"
+  href={post.href}
+  target={post.external ? "_blank" : undefined}
+  rel={post.external ? "noopener" : undefined}
+>
+  {post.cover && <img class="post-card__cover" src={post.cover} alt="" loading="lazy" />}
+  <div class="post-card__body">
+    <span class="chip post-card__label">{post.label}</span>
+    <Title class="post-card__title">
+      {post.title}
+      {post.external && <span class="visually-hidden"> (opens in a new tab)</span>}
+    </Title>
+    {post.summary && <p class="post-card__summary">{post.summary}</p>}
+    <p class="post-card__meta">
+      <time datetime={post.date}>{readableDate(post.date)}</time>
+      {tags.length > 0 && <span class="post-card__tags">{tags.map((tag) => `#${tag}`).join(" ")}</span>}
+    </p>
+  </div>
+</a>

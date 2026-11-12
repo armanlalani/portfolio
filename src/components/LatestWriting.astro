@@ -1,0 +1,42 @@
+---
+// Home page "Writing" section: the 10 newest posts in a horizontal carousel,
+// then a card linking to /writing/ for the rest.
+import PostCard from "./PostCard.astro";
+import { getLatest, getPosts } from "../lib/writing.js";
+
+const latest = getLatest();
+const total = getPosts().length;
+---
+
+<section class="latest-writing" id="writing" aria-labelledby="writing-title">
+  <div class="latest-writing__head">
+    <h2 class="section-title heading-3" id="writing-title">WRITING</h2>
+    <div class="carousel__controls" hidden>
+      <button class="chip carousel__button" type="button" data-carousel-prev aria-label="Previous posts">←</button>
+      <button class="chip carousel__button" type="button" data-carousel-next aria-label="Next posts">→</button>
+    </div>
+  </div>
+
+  <ul class="carousel__track" data-carousel aria-label="Latest posts">
+    {
+      latest.map((post) => (
+        <li class="carousel__item">
+          <PostCard post={post} />
+        </li>
+      ))
+    }
+    <li class="carousel__item">
+      <a class="post-card post-card--more" href="/writing/">
+        <div class="post-card__body">
+          <span class="post-card__title">See all writing →</span>
+          <span class="post-card__meta">{total} posts</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<script>
+  import { initCarousel } from "../scripts/carousel.js";
+  document.querySelectorAll("[data-carousel]").forEach(initCarousel);
+</script>

@@ -1,0 +1,270 @@
+---
+// Home page. The shared <head>, header and footer come from the Base layout.
+import Base from "../layouts/Base.astro";
+import LatestWriting from "../components/LatestWriting.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Base
+  title="Arman Lalani"
+  ogTitle="Arman Lalani — Software Developer"
+  ogDescription="Frontend engineer with 5 years of experience in React, JavaScript and GraphQL/Apollo."
+>
+  <section class="home" id="home">
+    <div class="home__container">
+      <div class="intro">
+        <p class="intro__greeting">Hey, there 👋</p>
+        <h1 class="intro__about-header">
+          <span class="about-header-iam">I'm</span>
+          <span class="about-header-name">Arman Lalani</span>
+          <br />
+          <span class="intro__work-title">a Software Developer</span>
+        </h1>
+
+        <p class="intro__about-main">
+          with 5 years of experience building data-heavy web apps in React
+          and GraphQL. I own features end-to-end, from the UI down to the
+          database and infrastructure, across ESG reporting and
+          manufacturing.
+        </p>
+      </div>
+
+      <img
+        class="profile-pic"
+        src="/assets/ArmanLalani_Headshot_SQ.jpg"
+        alt="profile picture"
+      />
+    </div>
+  </section>
+
+  <LatestWriting />
+
+  <section class="experience" id="experience">
+    <h2 class="section-title heading-3">EXPERIENCE</h2>
+    <div class="work-exp-card">
+      <div class="work-exp--timeline">
+        <div class="timeline--dot"></div>
+        <div class="timeline--stroke"></div>
+      </div>
+      <div class="work-exp--logo">
+        <img
+          src="/assets/iss-stoxx-logo-white-rgb.svg"
+          alt="I S S STOXX logo"
+        />
+      </div>
+      <div class="work-exp__details">
+        <h3 class="work-exp__title heading-5">Associate Software Engineer</h3>
+        <p class="work-exp__company heading-6">
+          ISS STOXX (Institutional Shareholder Services)
+        </p>
+        <p class="work-exp__duration">June 2025 - Present</p>
+        <ul class="work_exp__description">
+          <li>
+            Owned end-to-end delivery of a multi-step Field Mapping UI for an
+            ESG data platform, designing an async workflow (S3 uploads,
+            polling, pagination bucketing) that let users map their Excel
+            column headers to system-expected fields before pipeline
+            ingestion.
+          </li>
+
+          <li>
+            Eliminated duplicate GraphQL queries and unnecessary refetches by
+            configuring Apollo InMemoryCache keyFields and refactoring shared
+            hooks.
+          </li>
+
+          <li>
+            Moved data filtering logic from client-side JavaScript directly
+            to the Postgres database using Hasura GraphQL query predicates,
+            reducing data transfer size for heavy export pipelines.
+          </li>
+
+          <li>
+            Led the integration of the IFRS framework by replacing hardcoded
+            frontend logic with a dynamic, database-driven approach using
+            GraphQL and Apollo Client.
+          </li>
+
+          <li>
+            Resolved API Gateway timeouts by enabling direct React-to-Java
+            communication; mentored the backend team on Auth0-based
+            authentication (PKCE, JWT, JWKS) and fixed CORS configuration
+            issues.
+          </li>
+
+          <li>
+            Implemented user tracking by adding identity headers via React
+            Context and forwarding them through the Node.js layer using
+            AsyncLocalStorage, removing the need for manual changes across
+            30+ API handlers.
+          </li>
+
+          <li>
+            Contributed to a MySQL to SQL Server migration by translating 14
+            undocumented ORM queries into stored procedures; identified
+            missing FK constraints and a non-deterministic aggregation bug
+            caused by the disabled ONLY_FULL_GROUP_BY SQL mode, and rewrote
+            the affected queries with explicit aggregations.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="work-exp-card">
+      <div class="work-exp--timeline">
+        <div class="timeline--dot"></div>
+        <div class="timeline--stroke"></div>
+      </div>
+      <div class="work-exp--logo">
+        <img src="/assets/tcs-sq-white-bkg_hop.png" alt="T C S logo" />
+      </div>
+      <div class="work-exp__details">
+        <h3 class="work-exp__title heading-5">Software Engineer</h3>
+        <p class="work-exp__company heading-6">
+          Tata Consultancy Services Ltd.
+        </p>
+        <p class="work-exp__duration">June 2021 - May 2025</p>
+        <ul class="work_exp__description">
+          <li>
+            Collaborated with over 3 clients to gather requirements, design
+            prototypes, and implement final solutions in React based on
+            feedback.
+          </li>
+
+          <li>
+            Designed and implemented a scheduling feature that improved
+            operational efficiency by 30% for upcoming activities over the
+            next 7 days.
+          </li>
+
+          <li>
+            Created dynamic charts and graphs to visualize critical machine
+            parameters, ensuring real-time data visibility and improving
+            response times by 25%.
+          </li>
+
+          <li>
+            Authored comprehensive React unit test cases to maintain 95%+
+            test coverage, maintaining reliability and performance.
+          </li>
+
+          <li>
+            Provided ongoing support for the application, troubleshooting
+            issues and ensuring system stability for over 500 end users.
+          </li>
+
+          <li>
+            Resolved 10+ cloud vulnerabilities in AWS Lambdas by using AWS
+            Secrets, enhancing data security and compliance.
+          </li>
+
+          <li>
+            Played a key role in replicating and verifying 20+ APIs during
+            database migration, ensuring data consistency through Postman
+            test cases.
+          </li>
+
+          <li>
+            Built an export functionality that allowed users to download
+            actionable insights in Excel format, increasing report
+            accessibility by 40%.
+          </li>
+
+          <li>
+            Delivered monthly presentations to stakeholders on project
+            updates and technical progress.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="experience projects" id="projects">
+    <h2 class="section-title heading-3">PROJECTS</h2>
+    <div class="work-exp-card">
+      <div class="work-exp__details">
+        <h3 class="work-exp__title heading-5">
+          Real-Time Manufacturing Analytics Platform
+        </h3>
+        <p class="work-exp__company heading-6">
+          React, Node.js, Highcharts, PostgreSQL
+        </p>
+        <ul class="work_exp__description">
+          <li>
+            Built an interactive React dashboard to visualize live sensor
+            values and machine performance data on a digital shop floor
+            layout, allowing operators to filter and monitor plant
+            operations in real-time.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <h2 class="section-title heading-3">SKILLS</h2>
+
+    <ul>
+      <li class="skills__category">
+        <h3 class="heading-5 category__name">Languages</h3>
+        <ul class="category__items">
+          <li class="chip">JavaScript</li>
+          <li class="chip">TypeScript</li>
+          <li class="chip">HTML/CSS</li>
+          <li class="chip">SQL</li>
+        </ul>
+      </li>
+
+      <li class="skills__category">
+        <h3 class="heading-5 category__name">Libraries &amp; Frameworks</h3>
+        <ul class="category__items">
+          <li class="chip">React</li>
+          <li class="chip">Node.js</li>
+          <li class="chip">GraphQL</li>
+          <li class="chip">Apollo Client</li>
+          <li class="chip">Redux</li>
+          <li class="chip">React Router</li>
+          <li class="chip">Jest</li>
+          <li class="chip">Enzyme</li>
+          <li class="chip">Material-UI</li>
+          <li class="chip">Tailwind CSS</li>
+          <li class="chip">SASS</li>
+          <li class="chip">LESS</li>
+          <li class="chip">Babel</li>
+        </ul>
+      </li>
+
+      <li class="skills__category">
+        <h3 class="heading-5 category__name">Tools &amp; Architecture</h3>
+        <ul class="category__items">
+          <li class="chip">Auth0 (PKCE)</li>
+          <li class="chip">Git</li>
+          <li class="chip">Hasura</li>
+          <li class="chip">Nhost</li>
+          <li class="chip">AWS</li>
+          <li class="chip">Webpack</li>
+          <li class="chip">GitHub Copilot</li>
+          <li class="chip">SonarQube</li>
+          <li class="chip">REST APIs</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section class="experience education" id="education">
+    <h2 class="section-title heading-3">EDUCATION</h2>
+    <div class="work-exp-card">
+      <div class="work-exp__details">
+        <h3 class="work-exp__title heading-5">
+          Bachelor of Engineering (B.E.)
+        </h3>
+        <p class="work-exp__company heading-6">
+          Dwarkadas J Sanghvi College of Engineering, Mumbai University
+        </p>
+        <p class="work-exp__duration">2021 | 8.7 CGPA</p>
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+</Base>

@@ -1,0 +1,137 @@
+---
+// Site header: desktop menu, social icons, and the phone menu.
+// Menu items and social links come from src/data/site.js.
+import site from "../data/site.js";
+
+const path = Astro.url.pathname;
+const onHome = path === "/";
+
+// Section links stay on the page from the home page (#experience)
+// and go back to it from other pages (/#experience).
+function hrefFor(item) {
+  if (item.section === undefined) return item.href;
+  if (onHome) return `#${item.section}`;
+  return item.section ? `/#${item.section}` : "/";
+}
+
+const navItems = site.nav.map((item) => ({
+  ...item,
+  href: hrefFor(item),
+  current: !item.external && item.section === undefined && path.startsWith(item.href),
+}));
+---
+
+<header>
+  <section class="main-header header-prop">
+    <p class="initials">{site.name}</p>
+
+    <nav class="desktop">
+      <ul>
+        {
+          navItems.map((item) => (
+            <li class="menu-item">
+              <a
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener" : undefined}
+                aria-current={item.current ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ul class="desktop socials">
+      {
+        site.socials.map((social) => (
+          <li>
+            <a href={social.href} target="_blank" rel="noopener">
+              <img class="socials--logo" alt={`${social.label} logo`} src={social.icon} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <button
+      class="menu-button mobile"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        class="menu-icon open-icon mobile"
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 12h16M4 6h16M4 18h16"></path>
+      </svg>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        class="menu-icon close-icon mobile"
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M6.225 4.811a1 1 0 0 0-1.414 1.414L10.586 12L4.81 17.775a1 1 0 1 0 1.414 1.414L12 13.414l5.775 5.775a1 1 0 0 0 1.414-1.414L13.414 12l5.775-5.775a1 1 0 0 0-1.414-1.414L12 10.586z"
+        ></path>
+      </svg>
+    </button>
+  </section>
+
+  <section class="extended-header header-prop mobile" id="mobile-menu">
+    <nav>
+      <ul>
+        {
+          navItems.map((item) => (
+            <li class="menu-item">
+              <a
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener" : undefined}
+                aria-current={item.current ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ul class="socials">
+      {
+        site.socials.map((social) => (
+          <li>
+            <a href={social.href} target="_blank" rel="noopener">
+              <img class="socials--logo" alt={`${social.label} logo`} src={social.icon} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</header>
+
+<script>
+  // Runs in the browser. Astro bundles this into a small plain-JS file.
+  import { initMenu } from "../scripts/menu.js";
+  initMenu();
+</script>

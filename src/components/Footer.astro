@@ -1,0 +1,19 @@
+---
+import site from "../data/site.js";
+
+const buildYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <p>
+    © <span class="footer__year">{buildYear}</span>
+    {site.name} · Built with plain HTML, CSS &amp; JavaScript ·
+    <a href={site.sourceUrl} target="_blank" rel="noopener">View source ↗</a>
+  </p>
+  <a href="#">Back to top ↑</a>
+</footer>
+
+<script>
+  import { updateFooterYear } from "../scripts/footer-year.js";
+  updateFooterYear();
+</script>

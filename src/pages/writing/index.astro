@@ -1,0 +1,31 @@
+---
+// /writing/: every visible post as a grid of cards.
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getPosts } from "../../lib/writing.js";
+
+const posts = getPosts();
+---
+
+<Base
+  title="Writing — Arman Lalani"
+  description="Notes on frontend development by Arman Lalani: JavaScript, React, performance and the web platform, explained from first principles."
+>
+  <section class="writing">
+    <h1 class="section-title heading-3">WRITING</h1>
+    <p class="writing__intro">
+      Notes on frontend development: JavaScript, React, performance and the
+      web platform, explained from first principles.
+    </p>
+
+    <ul class="post-grid">
+      {
+        posts.map((post) => (
+          <li>
+            <PostCard post={post} headingLevel={2} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

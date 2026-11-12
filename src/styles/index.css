@@ -93,7 +93,10 @@ main {
     scroll-margin-top: 112px;
   }
 
-  > section + section {
+  /* Space above every section except the first. Not "section + section":
+     Astro places a component's <script> right after its section, and that
+     would stop the next section from matching. */
+  > section:not(:first-of-type) {
     margin-top: 72px;
   }
 }
@@ -353,6 +356,186 @@ section.contact {
   }
 }
 
+/* ---------- Writing (/writing/) ---------- */
+
+.menu-item a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+section.writing {
+  padding-top: 32px;
+
+  .writing__intro {
+    max-width: 60ch;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--gray);
+    margin-bottom: 40px;
+  }
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.post-card {
+  position: relative; /* keeps the hidden "(opens in a new tab)" text inside the card */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--gray-transparent);
+  border-radius: 16px;
+  background-color: #03527d40;
+  transition: border-color 0.15s, transform 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .post-card__cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background-color: var(--background);
+  }
+
+  .post-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 20px 20px;
+  }
+
+  .post-card__label {
+    align-self: flex-start;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+  }
+
+  .post-card__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .post-card__summary {
+    color: var(--gray);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .post-card__meta {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.9rem;
+    color: var(--gray);
+  }
+}
+
+/* "See all writing" card at the end of the carousel */
+.post-card--more {
+  border-style: dashed;
+
+  .post-card__body {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .post-card__meta {
+    margin-top: 0;
+  }
+}
+
+/* ---------- Home page Writing carousel ---------- */
+
+section.latest-writing {
+  .latest-writing__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.carousel__controls {
+  display: flex;
+  gap: 8px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.carousel__button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--white);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+/* Works with no JavaScript: swipe on touch, sideways scroll on a trackpad.
+   The script only adds the previous/next buttons. */
+.carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 300px;
+  gap: 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding: 4px 2px 16px; /* room for the hover lift and focus outline */
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-transparent) transparent;
+
+  .carousel__item {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .carousel__track {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card {
+    transition: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
+  }
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 12px;
@@ -394,6 +577,16 @@ section.contact {
         border-radius: 12px;
       }
     }
+  }
+
+  /* Carousel: one card plus a peek of the next; swipe instead of buttons */
+  .carousel__track {
+    grid-auto-columns: 82%;
+    gap: 14px;
+  }
+
+  .carousel__controls {
+    display: none;
   }
 
   section.experience .work-exp__details {
