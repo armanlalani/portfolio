@@ -639,18 +639,40 @@ section.latest-writing {
 }
 
 .sources-list {
-  list-style-type: "\2726";
-  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   line-height: 1.6;
 
-  li {
-    padding-left: 10px;
-    margin: 6px 0;
+  dt {
+    margin-bottom: 6px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  dd {
+    position: relative;
+    padding-left: 26px;
+    margin: 4px 0;
+    color: var(--gray);
+
+    &::before {
+      content: "\2726";
+      position: absolute;
+      left: 0;
+    }
   }
 
   a {
     text-decoration: underline;
     text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+
+    &:hover {
+      color: var(--white);
+    }
   }
 }
 

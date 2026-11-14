@@ -95,19 +95,23 @@ const articleData = {
       deck.sources?.length > 0 && (
         <section class="post__section" aria-labelledby="sources-title">
           <h2 class="post__section-title" id="sources-title">Sources</h2>
-          <ul class="sources-list">
+          <dl class="sources-list">
             {deck.sources.map((source) => (
-              <li>
-                {source.url ? (
-                  <a href={source.url} target="_blank" rel="noopener">
-                    {source.label}
-                  </a>
-                ) : (
-                  source.label
-                )}
-              </li>
+              <div class="sources-list__group">
+                <dt>
+                  <strong>{source.slides}:</strong> {source.claim}
+                </dt>
+                {source.links.map((link) => (
+                  <dd>
+                    <a href={link.url} target="_blank" rel="noopener">
+                      {link.label}
+                      <span class="visually-hidden"> (opens in a new tab)</span>
+                    </a>
+                  </dd>
+                ))}
+              </div>
             ))}
-          </ul>
+          </dl>
         </section>
       )
     }

@@ -111,7 +111,7 @@ export default {
       items: [
         {
           title: "6. Doubt",
-          text: "Investors begin to doubt the growth estimates, and stock prices start coming down. As of November 9, 2026, Oracle was down about 38% for the year and CoreWeave about 32%.",
+          text: "Investors begin to doubt the growth estimates, and stock prices start coming down. As of November 2, 2026, Oracle was down about 39% for the year and CoreWeave about 30%.",
         },
         {
           title: "7. Money gets expensive",
@@ -236,13 +236,100 @@ export default {
     },
   ],
 
-  // Shown as links under the text version. Add `url` to each one to make it a link;
-  // entries without a url are shown as plain text.
+  // Shown under the text version, grouped by the slide each source supports.
+  // Every link was opened and checked against the claim on 13 Nov 2026.
+  // Not cited yet: slide 4 (chips are over half of a data center's cost);
+  // slide 12 is general history.
   sources: [
-    { label: "Financial Stability Board, private credit report (May 2026)", url: "" },
-    { label: "Morgan Stanley, data center financing estimates", url: "" },
-    { label: "Goldman Sachs, AI’s share of the S&P 500 (2026)", url: "" },
-    { label: "Reuters, Axios, Fortune and Morningstar reporting on AI debt and OpenAI’s commitments", url: "" },
-    { label: "Stock moves through the Nov 9, 2026 close (Motley Fool, Trefis)", url: "" },
+    {
+      slides: "Slides 3 and 5",
+      claim: "Big Tech pays from its own earnings; about $3 trillion of data centers through 2028, roughly half financed from outside",
+      links: [
+        {
+          label: "MUFG Americas: Financing the AI Supercycle (PDF, Dec 2025)",
+          url: "https://www.mufgamericas.com/sites/default/files/document/2025-12/AI_Chart_Weekly_12_19_Financing_the_AI_Supercycle.pdf",
+        },
+        {
+          label: "Reuters: Five debt hotspots in the AI data centre boom (Nov 2025), citing Morgan Stanley",
+          url: "https://www.streetinsider.com/Reuters/Five+debt+hotspots+in+the+AI+data+centre+boom/25555771.html",
+        },
+      ],
+    },
+    {
+      slides: "Slide 5",
+      claim: "OpenAI’s commitments of over $1 trillion",
+      links: [
+        {
+          label: "Morningstar: Ahead of IPOs, AI giants keep making circular deals (May 2026)",
+          url: "https://www.morningstar.com.au/stocks/ahead-ipos-ai-giants-keep-making-circular-deals-heres-why-thats-risk-clone",
+        },
+        {
+          label: "Fortune: OpenAI’s partners are carrying $96 billion in debt (Nov 2025)",
+          url: "https://fortune.com/2025/11/28/openai-partners-96-billion-debt/",
+        },
+      ],
+    },
+    {
+      slides: "Slide 6",
+      claim: "A faster AI chip comes out every year or so",
+      links: [
+        {
+          label: "Yahoo Finance: Was Michael Burry right about AI stocks for the wrong reason? (Mar 2026)",
+          url: "https://finance.yahoo.com/markets/stocks/articles/michael-burry-ai-stocks-wrong-151803035.html",
+        },
+      ],
+    },
+    {
+      slides: "Slide 7",
+      claim: "As of November 2, 2026, Oracle was down about 39% for the year and CoreWeave about 30%",
+      links: [
+        {
+          label: "TIKR: CoreWeave is down 30% in 2026. Dead money, or due for a bounce? (Nov 2026)",
+          url: "https://www.tikr.com/blog/already-popping-coreweave-is-down-30-in-2026-dead-money-or-due-for-a-bounce",
+        },
+      ],
+    },
+    {
+      slides: "Slide 9",
+      claim: "1 in 3 private credit deals were AI-related in 2025; $220B+ from banks to private credit funds",
+      links: [
+        {
+          label: "Financial Stability Board: Report on Vulnerabilities in Private Credit (PDF, May 2026)",
+          url: "https://www.fsb.org/uploads/P060526.pdf",
+        },
+        {
+          label: "Financial Stability Board: press release (May 2026)",
+          url: "https://www.fsb.org/2026/05/fsb-warns-on-private-credit-vulnerabilities/",
+        },
+        {
+          label: "The Guardian (via inkl): Global finance watchdog warns over private credit fuelling AI boom (May 2026)",
+          url: "https://www.inkl.com/news/global-finance-watchdog-warns-over-private-credit-industry-fuelling-ai-boom",
+        },
+        {
+          label: "Benzinga (via Interactive Brokers): watchdog warns private credit risks could spill into banks (May 2026)",
+          url: "https://www.interactivebrokers.eu/campus/traders-insight/securities/fixed-income/private-credit-market-exploded-after-2008-financial-crisis-to-2-trillion-but-this-watchdog-has-now-warned-untested-risks-could-spill-into-banks/",
+        },
+      ],
+    },
+    {
+      slides: "Slide 10",
+      claim: "Data center loans sit in separate companies and are backed by real assets",
+      links: [
+        {
+          label: "Bloomberg (via Insurance Journal): AI hyperscalers’ shadow borrowing bolsters private credit risks (Mar 2026)",
+          url: "https://www.insurancejournal.com/news/international/2026/03/17/862128.htm",
+        },
+      ],
+    },
+    {
+      slides: "Slide 11",
+      claim: "About 45% of the S&P 500’s value comes from AI-linked companies, up from about 25% in 2022",
+      links: [
+        {
+          label: "investingLive: AI stocks near 45% of S&P 500 weight, Goldman flags rising concentration (Apr 2026)",
+          url: "https://investinglive.com/stock-market-update/ai-stocks-near-45-of-sp-500-weight-goldman-flags-rising-concentration-20260422/",
+        },
+      ],
+    },
   ],
 };
